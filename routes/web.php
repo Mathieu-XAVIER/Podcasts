@@ -20,9 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [PodcastController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('dashboard/podcasts', PodcastController::class);
+
+Route::get('/Mes-Podcasts', [PodcastController::class,'showUserPodcasts'])->name('mypodcasts');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -43,4 +45,5 @@ Route::get('/auth/callback', function () {
     // $user->token
 });
 
-Route::resource('/podcasts', PodcastController::class);
+
+
