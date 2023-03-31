@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form  action="{{route('podcasts.store')}}" method="post">
+    <form  action="{{route('podcasts.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <p>
             <label>Titre :

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('user_id');
+            $table->string('audio');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

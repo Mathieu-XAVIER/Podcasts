@@ -1,0 +1,62 @@
+/* Style pour la liste des podcasts */
+.podcast-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style pour chaque élément de la liste des podcasts */
+.podcast-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Style pour le titre du podcast */
+.podcast-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Style pour la description du podcast */
+.podcast-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Style pour le nom de l'auteur du podcast */
+.podcast-author {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+/* Style pour les boutons modifier, supprimer et lire */
+.podcast-button {
+    display: inline-block;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #337ab7;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+/* Style pour le bouton modifier */
+.podcast-edit {
+    background-color: #5cb85c;
+}
+
+/* Style pour le bouton supprimer */
+.podcast-delete {
+    background-color: #d9534f;
+}
+
+/* Style pour le bouton lire */
+.podcast-play {
+    background-color: #f0ad4e;
+}

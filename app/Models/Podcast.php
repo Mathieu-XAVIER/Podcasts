@@ -20,6 +20,7 @@ class Podcast extends Model
         'title',
         'description',
         'user_id',
+        'audio',
     ];
 
 

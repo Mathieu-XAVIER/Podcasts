@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Podcast;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
-class PodcastController extends Controller
+class AdminController extends Controller
 {
-
     public function index()
     {
         $podcasts = Podcast::all();
-        return view('dashboard',['podcasts' => $podcasts]);
+        return view('admin.dashboard',['podcasts' => $podcasts]);
     }
 
     public function showUserPodcasts(){

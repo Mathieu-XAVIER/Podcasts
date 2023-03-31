@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -30,20 +31,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::middleware(['admin'])->name('admin.')->prefix('admin')->group(function (){
+        Route::resource('dashboard', AdminController::class)->middleware(['auth', 'admin']);
+    });
 });
 
 require __DIR__.'/auth.php';
 
 
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('microsoft')->redirect();
-})->name('microsoft');
-
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('microsoft')->user();
-
-    // $user->token
-});
 
 
 
