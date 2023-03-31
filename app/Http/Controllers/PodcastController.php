@@ -33,11 +33,14 @@ class PodcastController extends Controller
         $validated = $request->validate([
             'title' => ['nullable'],
             'description' => ['nullable'],
+            'audio' => ['nullable'],
         ]);
 
-        $podcast->update($validated);
+        $podcastPath = Storage::disk('public')->put('podcasts', $request->audio);
 
-        return redirect()->route('mypodcasts')->with('status', 'Podcast updated !');
+        $podcast->update([...$validated, 'audio'=>$podcastPath]);
+
+        return redirect()->route('mypodcasts')->with('status', 'Podcast mis à jour !');
     }
 
     public function destroy(string $id){

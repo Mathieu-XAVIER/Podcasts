@@ -50,7 +50,7 @@
 
         </div>
     </form>
-    <x-primary-button class="ml-4">
-        {{ Route('microsoft') }}
-    </x-primary-button>
+    <a href="{{ Route('microsoft') }}" class="ml-4">
+        Microsoft
+    </a>
 </x-guest-layout>

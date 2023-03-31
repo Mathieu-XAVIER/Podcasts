@@ -39,6 +39,15 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('azure')->redirect();
+})->name('microsoft');
+
+Route::get('/dashboard', function () {
+    $user = Socialite::driver('azure')->user();
+
+    // $user->token
+});
 
 
 
