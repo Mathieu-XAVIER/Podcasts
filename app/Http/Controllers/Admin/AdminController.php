@@ -36,12 +36,12 @@ class AdminController extends Controller
 
         $podcast->update($validated);
 
-        return redirect()->route('mypodcasts')->with('status', 'Podcast updated !');
+        return redirect()->route('admin.dashboard.index')->with('status', 'Podcast updated !');
     }
 
     public function destroy(string $id){
         Podcast::destroy($id);
-        return redirect()->route('mypodcasts')->with('status', 'Podcast supprimé');
+        return redirect()->route('dashboard')->with('status', 'Podcast supprimé');
     }
     public function create():View{
         return view('podcasts.create-podcast');

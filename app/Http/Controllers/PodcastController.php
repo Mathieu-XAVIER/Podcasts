@@ -5,14 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Podcast;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use phpDocumentor\Reflection\Types\Null_;
 
 class PodcastController extends Controller
 {
 
     public function index()
     {
+        if (Auth::user()->role === 'admin'){
+            return redirect()->route('admin.dashboard.index');
+        }
         $podcasts = Podcast::all();
         return view('dashboard',['podcasts' => $podcasts]);
     }
@@ -36,9 +41,15 @@ class PodcastController extends Controller
             'audio' => ['nullable'],
         ]);
 
-        $podcastPath = Storage::disk('public')->put('podcasts', $request->audio);
+        if ($request->hasFile('audio')) {
+            $podcastPath = Storage::disk('public')->put('podcasts', $request->audio);
+            $podcast->audio = $podcastPath;
+        }
 
-        $podcast->update([...$validated, 'audio'=>$podcastPath]);
+        $podcast->title = $validated['title'];
+        $podcast->description = $validated['description'];
+        $podcast->save();
+//        $podcast->update($validated);
 
         return redirect()->route('mypodcasts')->with('status', 'Podcast mis à jour !');
     }
@@ -62,7 +73,7 @@ class PodcastController extends Controller
 
         auth()->user()->podcasts()->create([...$validated,'audio'=>$podcastPath]);
 
-        return redirect()->route('dashboard')->with('status', 'Podcast ajouté !');
+        return redirect()->route('mypodcasts')->with('status', 'Podcast ajouté !');
 
     }
 }

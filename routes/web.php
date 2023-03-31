@@ -43,7 +43,7 @@ Route::get('/auth/redirect', function () {
     return Socialite::driver('azure')->redirect();
 })->name('microsoft');
 
-Route::get('/dashboard', function () {
+Route::get('/auth/callback', function () {
     $user = Socialite::driver('azure')->user();
 
     // $user->token

@@ -8,10 +8,43 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Modifier vos informations</h1>
 <x-app-layout>
+    <style>
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            margin-top: 8%;
+        }
+
+        input[type=text], textarea, input[type=file] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        button[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type=submit]:hover {
+            background-color: #45a049;
+        }
+    </style>
     <div >
-        <form action="{{route('podcasts.update', $podcast)}}" method="POST">
+        <form action="{{route('podcasts.update', $podcast)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <p>
