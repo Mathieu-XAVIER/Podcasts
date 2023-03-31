@@ -50,7 +50,7 @@
 
         </div>
     </form>
-    <a href="{{ Route('microsoft') }}" class="ml-4">
-        Microsoft
+    <a href="{{ Route('microsoft') }}" class="ml-4 text-white">
+        Se connecter avec Microsoft
     </a>
 </x-guest-layout>

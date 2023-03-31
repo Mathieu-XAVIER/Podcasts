@@ -42,6 +42,9 @@
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
             </x-primary-button>
+                <a href="{{ route('microsoft') }}" class="ml-4 text-white">
+                    Se connecter avec Microsoft
+                </a>
         </div>
     </form>
 </x-guest-layout>

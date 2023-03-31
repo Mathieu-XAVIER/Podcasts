@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -44,9 +45,22 @@ Route::get('/auth/redirect', function () {
 })->name('microsoft');
 
 Route::get('/auth/callback', function () {
-    $user = Socialite::driver('azure')->user();
+    $microsoftUser = Socialite::driver('azure')->user();
 
-    // $user->token
+    $user = User::updateOrCreate(
+        [
+            'email' => $microsoftUser->getEmail(),
+        ],
+        [
+            'id' => $microsoftUser->getId(),
+            'name' => $microsoftUser->getName(),
+            'password' => $microsoftUser->password,
+        ]
+    );
+
+    Auth::login($user);
+
+    return redirect()->route('dashboard');
 });
 
 

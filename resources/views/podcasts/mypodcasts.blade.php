@@ -65,7 +65,7 @@
         </div>
         <div class="podcast-edit podcast-button">
             <form action="{{route('podcasts.edit',$podcast)}}">
-                <button type="submit">Edit</button>
+                <button type="submit">Editer</button>
             </form>
         </div>
         <div class="podcast-delete podcast-button">
